@@ -16,10 +16,52 @@ class WordCountService1Test {
     FileReader1 fileReader = new FileReader1();
 
 
-    // 1. FINDING VOCABULARY WORDS IN TEXT (INCLUDED IN OUR COUNT)
+    // 1. COUNTING VOCABULARY WORDS IN TEXT
 
 
-    //1.1. Finding vocabulary words in text (several) and putting them into the List
+    //1.1. Counting vocabulary words in text (several) and return number of words
+    @Test
+    void numberOfFoundWordsShoulBeEqual2() throws IOException {
+
+        List<String> wordsFoundInText = wordCountService.findWordsInText("ThISggabfdftest", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt"));
+        assertEquals( 2, wordsFoundInText.size());
+    }
+
+
+    //1.2. Counting vocabulary words in text (one) and return number of words
+    @Test
+    void numberOfFoundWordsShouldBeEqual1() throws IOException {
+
+        List<String> wordsFoundInText = wordCountService.findWordsInText("ThISggbfdftest", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt"));
+        assertEquals(1, wordsFoundInText.size());
+    }
+
+
+    //1.3. Counting vocabulary words in text and return number of words when NO words found
+    @Test
+    void numberOfFoundWordsShoulBeEqual0() throws IOException {
+
+        List<String> wordsFoundInText = wordCountService.findWordsInText("XyZtqAhTEsT", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt"));
+        assertEquals(0,wordsFoundInText.size());
+    }
+
+    //1.4. Counting vocabulary words in text when user input text contains 3 words, but actually
+    // only 2 should be returned due to taking of a substring with found word
+    // (In file: sun, glass, sunglasses)
+
+    @Test
+    void numberOfFoundWordsShoulBeEqual2DueToSubstringExtraction() throws IOException {
+
+        List<String> wordsFoundInText = wordCountService.findWordsInText("sunglasses", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting3.txt"));
+
+        assertEquals(2, wordsFoundInText.size());
+    }
+
+
+    // 2. FINDING VOCABULARY WORDS IN TEXT (INCLUDED IN OUR COUNT)
+
+
+    //2.1. Finding vocabulary words in text (several) and putting them into the List
     @Test
     void wordsIsTestFromInputFileShouldBeFoundInTextAndAddedToTheList() throws IOException {
 
@@ -31,7 +73,7 @@ class WordCountService1Test {
     }
 
 
-    //1.2. Finding vocabulary words in text (one) and putting it into the List
+    //2.2. Finding vocabulary words in text (one) and putting it into the List
     @Test
     void wordTestFromInputFileShouldBeFoundInTextAndAddedToTheList() throws IOException {
 
@@ -42,7 +84,7 @@ class WordCountService1Test {
     }
 
 
-    // 1.3. Finding vocabulary words in text when user input contains NO vocabulary words (result => empty List)
+    // 2.3. Finding vocabulary words in text when user input contains NO vocabulary words (result => empty List)
     @Test
     void noWordsFromInputFileShouldBeFoundInTextAndAddedToTheList() throws IOException {
 
@@ -50,7 +92,7 @@ class WordCountService1Test {
         assertEquals(vocabularyWords, wordCountService.findWordsInText( "fruuytrtTESTnhyhTHIs", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt")));
     }
 
-    //1.4. Finding vocabulary words in text when user input text contains 3 words, but actually
+    //2.4. Finding vocabulary words in text when user input text contains 3 words, but actually
     // only 2 should be returned due to taking of a substring with found word
     // (In file: sun, glass, sunglasses)
 
@@ -64,47 +106,6 @@ class WordCountService1Test {
         assertEquals(vocabularyWords, wordCountService.findWordsInText( "sunglasses", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting3.txt")));
     }
 
-
-    // 2. COUNTING VOCABULARY WORDS IN TEXT
-
-
-    //2.1. Counting vocabulary words in text (several) and return number of words
-    @Test
-    void numberOfFoundWordsShoulBeEqual2() throws IOException {
-
-        List<String> wordsFoundInText = wordCountService.findWordsInText("ThISggabfdftest", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt"));
-        assertEquals( 2, wordsFoundInText.size());
-    }
-
-
-    //2.2. Counting vocabulary words in text (one) and return number of words
-    @Test
-    void numberOfFoundWordsShouldBeEqual1() throws IOException {
-
-        List<String> wordsFoundInText = wordCountService.findWordsInText("ThISggbfdftest", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt"));
-        assertEquals(1, wordsFoundInText.size());
-    }
-
-
-    //2.3. Counting vocabulary words in text and return number of words when NO words found
-    @Test
-    void numberOfFoundWordsShoulBeEqual0() throws IOException {
-
-        List<String> wordsFoundInText = wordCountService.findWordsInText("XyZtqAhTEsT", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt"));
-        assertEquals(0,wordsFoundInText.size());
-    }
-
-    //2.4. Counting vocabulary words in text when user input text contains 3 words, but actually
-    // only 2 should be returned due to taking of a substring with found word
-    // (In file: sun, glass, sunglasses)
-
-    @Test
-    void numberOfFoundWordsShoulBeEqual2DueToSubstringExtraction() throws IOException {
-
-        List<String> wordsFoundInText = wordCountService.findWordsInText("sunglasses", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting3.txt"));
-
-        assertEquals(2, wordsFoundInText.size());
-    }
 
 
 }
