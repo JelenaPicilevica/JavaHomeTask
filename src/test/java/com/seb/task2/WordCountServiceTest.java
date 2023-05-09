@@ -61,7 +61,6 @@ class WordCountServiceTest {
     void numberOfFoundWordsShoulBeEqual2DueToSubstringExtraction() throws IOException {
 
         List<String> wordsFoundInText = wordCountService.findWordsInText("sunglasses", true, fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting3.txt"));
-
         assertEquals(2, wordsFoundInText.size());
     }
 
@@ -74,7 +73,6 @@ class WordCountServiceTest {
     void numberOfFoundWordsShoulBeEqual2DueToSubstringExtractionIgnoreCase() throws IOException {
 
         List<String> wordsFoundInText = wordCountService.findWordsInText("SUNglasses", false, fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting3.txt"));
-
         assertEquals(2, wordsFoundInText.size());
     }
 
@@ -87,10 +85,7 @@ class WordCountServiceTest {
     @Test
     void wordsThisTestFromInputFileShouldBeFoundInTextAndAddedToTheList() throws IOException {
 
-        List<String> vocabularyWords = new ArrayList<>();
-        vocabularyWords.add("This");
-        vocabularyWords.add("test");
-
+        List<String> vocabularyWords = List.of("This", "test");
         assertEquals(vocabularyWords,wordCountService.findWordsInText( "htrhyerTHISfrgTeSt", false, fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt")));
     }
 
@@ -100,9 +95,7 @@ class WordCountServiceTest {
     @Test
     void wordTestFromInputFileShouldBeFoundInTextAndAddedToTheList() throws IOException {
 
-        List<String> vocabularyWords = new ArrayList<>();
-        vocabularyWords.add("test");
-
+        List<String> vocabularyWords = List.of("test");
         assertEquals(vocabularyWords, wordCountService.findWordsInText( "htrhyerTHISfrgtestqeeq", true, fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt")));
     }
 
@@ -134,10 +127,7 @@ class WordCountServiceTest {
     @Test
     void wordsSunGlassFromInputFileShouldBeFoundInTextAndAddedToTheList() throws IOException {
 
-        List<String> vocabularyWords = new ArrayList<>();
-        vocabularyWords.add("sun");
-        vocabularyWords.add("glass");
-
+        List<String> vocabularyWords = List.of("sun", "glass");
         assertEquals(vocabularyWords, wordCountService.findWordsInText( "sunglasses", true, fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting3.txt")));
     }
 
@@ -148,10 +138,7 @@ class WordCountServiceTest {
     @Test
     void wordsSunGlassFromInputFileShouldBeFoundInTextAndAddedToTheList2() throws IOException {
 
-        List<String> vocabularyWords = new ArrayList<>();
-        vocabularyWords.add("sun");
-        vocabularyWords.add("glass");
-
+        List<String> vocabularyWords = List.of("sun", "glass");
         assertEquals(vocabularyWords, wordCountService.findWordsInText( "SUNglasses", false, fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting3.txt")));
     }
 

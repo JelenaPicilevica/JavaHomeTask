@@ -45,15 +45,14 @@ class WordCountService1Test {
         assertEquals(0,wordsFoundInText.size());
     }
 
+
     //1.4. Counting vocabulary words in text when user input text contains 3 words, but actually
     // only 2 should be returned due to taking of a substring with found word
     // (In file: sun, glass, sunglasses)
-
     @Test
     void numberOfFoundWordsShoulBeEqual2DueToSubstringExtraction() throws IOException {
 
         List<String> wordsFoundInText = wordCountService.findWordsInText("sunglasses", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting3.txt"));
-
         assertEquals(2, wordsFoundInText.size());
     }
 
@@ -65,10 +64,7 @@ class WordCountService1Test {
     @Test
     void wordsIsTestFromInputFileShouldBeFoundInTextAndAddedToTheList() throws IOException {
 
-        List<String> vocabularyWords = new ArrayList<>();
-        vocabularyWords.add("is");
-        vocabularyWords.add("test");
-
+        List<String> vocabularyWords = List.of("is", "test");
         assertEquals(vocabularyWords, wordCountService.findWordsInText( "ishtrhyerTHISfrgtestqeeq", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt")));
     }
 
@@ -77,9 +73,7 @@ class WordCountService1Test {
     @Test
     void wordTestFromInputFileShouldBeFoundInTextAndAddedToTheList() throws IOException {
 
-        List<String> vocabularyWords = new ArrayList<>();
-        vocabularyWords.add("test");
-
+        List<String> vocabularyWords = List.of("test");
         assertEquals(vocabularyWords, wordCountService.findWordsInText( "htrhyerTHISfrgtestqeeq", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt")));
     }
 
@@ -99,10 +93,7 @@ class WordCountService1Test {
     @Test
     void wordsSunGlassFromInputFileShouldBeFoundInTextAndAddedToTheList() throws IOException {
 
-        List<String> vocabularyWords = new ArrayList<>();
-        vocabularyWords.add("sun");
-        vocabularyWords.add("glass");
-
+        List<String> vocabularyWords = List.of("sun", "glass");
         assertEquals(vocabularyWords, wordCountService.findWordsInText( "sunglasses", fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting3.txt")));
     }
 

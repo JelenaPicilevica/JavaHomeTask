@@ -3,7 +3,6 @@ package com.seb.task1;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,12 +16,7 @@ class FileReader1Test {
     @Test
     void wordsThisIsATestFromInputFileShouldBeAddedToTheListAndReturned() throws IOException {
 
-        List<String> vocabularyWords = new ArrayList<>();
-        vocabularyWords.add("This");
-        vocabularyWords.add("is");
-        vocabularyWords.add("a");
-        vocabularyWords.add("test");
-
+        List<String> vocabularyWords = List.of("This", "is", "a", "test");
         assertEquals(vocabularyWords, fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting.txt"));
     }
 
@@ -31,11 +25,7 @@ class FileReader1Test {
     @Test
     void abcFromInputFileShouldBeAddedToTheListAndReturned() throws IOException {
 
-        List<String> vocabularyWords = new ArrayList<>();
-        vocabularyWords.add("a");
-        vocabularyWords.add("b");
-        vocabularyWords.add("c");
-
+        List<String> vocabularyWords = List.of("a", "b", "c");
         assertEquals(vocabularyWords,fileReader.readFileAndAddWordsToTheList("src/test/resources/fileForTesting2.txt"));
     }
 
